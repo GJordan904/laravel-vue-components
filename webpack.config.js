@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const helpers = require('webpack.helper');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractSass = new ExtractTextPlugin({filename: '[name].[contenthash].css', allChunks: true});
 
 module.exports = {
 
@@ -72,7 +73,7 @@ module.exports = {
                     ]
                 }),
                 include: [
-                    helpers.root('src'),
+                    helpers.srcPath('sass'),
                     helpers.root('node_modules')
                 ]
             },
