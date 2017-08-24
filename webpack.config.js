@@ -1,13 +1,23 @@
 const webpack = require('webpack');
-const helpers = require('webpack.helper');
+const helpers = require('./webpack.helper');
+const isDev = process.env.NODE_ENV === 'development';
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const ExtractSass = new ExtractTextPlugin({filename: '[name].[contenthash].css', allChunks: true});
+const ExtractSass = new ExtractTextPlugin({filename: '[name]-sass.css', allChunks: true});
+const ExtractCss = new ExtractTextPlugin({filename: '[name].css', allChunks: true});
 
 module.exports = {
+    devtool: isDev ? 'cheap-module-eval-source-map' : 'source-map',
 
     entry: {
-        'vendor': helpers.srcPath('vendor.js'),
-        'app': helpers.srcPath('app.js')
+        'vendor': helpers.srcPath('js/vendor.js'),
+        'app': helpers.srcPath('js/app.js')
+    },
+
+    output: {
+        path: helpers.publicPath(''),
+        publicPath: '/',
+        filename: '[name].js',
+        chunkFilename: '[id].chunk.js'
     },
 
     resolve: {
@@ -51,8 +61,12 @@ module.exports = {
                 }
             },
             {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
+            {
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
+                use: ExtractSass.extract({
                     use: [
                         {loader: "css-loader", options: {
                             importLoaders: 1,
@@ -66,11 +80,12 @@ module.exports = {
                         {loader: "sass-loader", options: {
                             sourceMap: true,
                             includePaths: [
-                                helpers.root('src'),
+                                helpers.srcPath('sass'),
                                 helpers.root('node_modules')
                             ]
                         }}
-                    ]
+                    ],
+                    fallback: 'style-loader'
                 }),
                 include: [
                     helpers.srcPath('sass'),
@@ -79,23 +94,35 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [
-                    {loader: "style-loader"},
-                    {loader: "css-loader", options: {
-                        sourceMap: true
-                    }
-                    },
-                    {loader: 'postcss-loader'}
-                ]
+                use: ExtractCss.extract({
+                    use: [
+                        {loader: "css-loader", options: {
+                            sourceMap: true
+                        }},
+                        {loader: 'postcss-loader'}
+                    ],
+                    fallback: 'style-loader'
+                })
             }
         ]
     },
 
     plugins: [
+        ExtractSass,
+
+        ExtractCss,
+
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['app', 'vendor']
+        }),
+
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
-            jquery: 'jquery'
+            jquery: 'jquery',
+            'process.env': {
+                NODE_ENV: process.env.NODE_ENV
+            }
         })
     ]
-}
+};

@@ -7,7 +7,7 @@ function publicPath(args) {
 }
 
 function srcPath(args) {
-    return path.resolve(ROOT, 'resources/assets/js', args)
+    return path.resolve(ROOT, 'resources/assets', args)
 }
 
 function root(args) {

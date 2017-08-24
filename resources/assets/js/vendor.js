@@ -10,3 +10,6 @@ axios.defaults.headers.common['X-Requested-With'] = 'XmlHttpRequest';
 
 import 'jquery';
 require('bootstrap-sass');
+
+import 'datatables.net';
+import 'datatables.net-bs';

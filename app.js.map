@@ -1,1 +1,0 @@
-{"version":3,"sources":["app.js"],"names":["green"],"mappings":";;;;;AAAA,IAAAA,wBAAA,MAAA","file":"app.js","sourcesContent":["export const green = '#4ee';"]}
