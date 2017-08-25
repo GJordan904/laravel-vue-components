@@ -5,6 +5,7 @@
     "stage-3"
   ],
   "plugins": [
+    "transform-runtime",
     "babel-plugin-transform-object-rest-spread"
   ],
   "ignore": "node_modules"

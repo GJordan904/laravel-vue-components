@@ -14,5 +14,5 @@ axios.defaults.headers.common['X-Requested-With'] = 'XmlHttpRequest';
 Vue.component('data-tables', () => import('./pages/datatables.vue'));
 
 new Vue({
-    el: 'body'
+    el: '#app'
 });

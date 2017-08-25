@@ -15,7 +15,7 @@ module.exports = {
 
     output: {
         path: helpers.publicPath(''),
-        publicPath: '/',
+        publicPath: '/laravel-vue-components/public/',
         filename: '[name].js',
         chunkFilename: '[id].chunk.js'
     },
@@ -121,12 +121,15 @@ module.exports = {
             name: ['app', 'vendor']
         }),
 
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: isDev ? JSON.stringify("development") : JSON.stringify("production")
+            }
+        }),
+
         new webpack.ProvidePlugin({
             $: "jquery",
-            jQuery: "jquery",
-            'process.env': {
-                NODE_ENV: process.env.NODE_ENV
-            }
+            jQuery: "jquery"
         })
     ]
 };

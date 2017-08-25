@@ -5,7 +5,8 @@
             <hr>
             <p>In this example we pass data from Laravel to DataTables. The Laravel data has been passed into this page component through the blade template as a prop.</p>
             <data-table
-                    :data="ex1Data">
+                    :data="ex1Data"
+                    classes="table">
             </data-table>
         </div>
     </div>
@@ -17,7 +18,7 @@
     export default {
         data() {
             return {
-
+                tableClasses: ['table', 'table-striped', 'table-bordered']
             }
         },
 
@@ -28,7 +29,7 @@
         props: {
             ex1Data: {
                 type: [Array],
-                default: []
+                default: () => []
             }
         },
 

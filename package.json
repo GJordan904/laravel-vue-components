@@ -1,7 +1,8 @@
 {
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress --colors --watch",
-    "dever": "npm run dev --display-error-details"
+    "dev": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress --colors",
+    "dever": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress --colors --watch --display-error-details --verbose",
+    "watch": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress --colors --watch"
   },
   "private": true,
   "devDependencies": {

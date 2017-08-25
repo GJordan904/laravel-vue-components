@@ -1,5 +1,5 @@
 <template>
-    <table :id="id" :class="classAsString()"></table>
+    <table :id="id" :class="classAsString"></table>
 </template>
 
 <script>
@@ -18,7 +18,7 @@
             },
             classes: {
                 type:[String, Array],
-                default: null
+                default: () => {return ['table']}
             },
             data: {
                 type:[Array],
@@ -30,7 +30,7 @@
             },
             scroll: {
                 type: [Object],
-                default: {x: true, y: true}
+                default: () => {return {x: true, y: true}}
             },
             serverSide: {
                 type:[Boolean],
@@ -42,9 +42,8 @@
             }
         },
         computed: {
-            classAsString() {
-                if (typeof this.classes === 'string') return this.classes;
-                return this.classes.join(' ');
+            classAsString: () => {
+                return this.classes === undefined ? '' : this.classes.join(' ');
             }
         },
         methods: {
@@ -68,6 +67,7 @@
             }
         },
         mounted() {
+            console.log(this.classes);
             const dtOptions = this.configDatatables();
             $('#'+this.id).DataTable(dtOptions);
         }

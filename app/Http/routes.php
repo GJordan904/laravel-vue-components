@@ -15,6 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::group(['prefix' => 'components'], function () {
-	Route::get('/', function () {return view('components.index');});
-	Route::get('datatables', ['use' => 'ComponentsController@datatables_index', 'as' => 'datatable_index']);
+	Route::get('datatables', ['uses' => 'ComponentsController@datatables_index', 'as' => 'datatable_index']);
 });
