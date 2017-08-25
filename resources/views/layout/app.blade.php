@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Vue Components | One way to integrate Vue and Laravel</title>
-    <link rel="stylesheet" href="{{ asset('app-sass.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor.css') }}">
+    <link rel="stylesheet" href="{{ asset('app.css') }}">
 <body>
 <nav class="navbar navbar-default">
     <div class="container-fluid">

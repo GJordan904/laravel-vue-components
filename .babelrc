@@ -1,0 +1,11 @@
+{
+  "presets": [
+    ["env", {"modules": false}],
+    "stage-2",
+    "stage-3"
+  ],
+  "plugins": [
+    "babel-plugin-transform-object-rest-spread"
+  ],
+  "ignore": "node_modules"
+}

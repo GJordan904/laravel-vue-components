@@ -1,9 +1,9 @@
 <template>
-    <table id="{{id}}" class="{{classAsString()}}"></table>
+    <table :id="id" :class="classAsString()"></table>
 </template>
 
 <script>
-    import DataTable from 'datatables';
+    import DataTable from 'datatables.net';
 
     export default {
         data() {
