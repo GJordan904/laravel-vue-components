@@ -15,7 +15,7 @@ module.exports = {
 
     output: {
         path: helpers.publicPath(''),
-        publicPath: '/laravel-vue-components/public/',
+        publicPath: '/vue-components/public/',
         filename: '[name].js',
         chunkFilename: '[id].chunk.js'
     },

@@ -5,8 +5,11 @@
         <div class="row">
             <h1>DataTables Component</h1>
             <hr>
-            <p>This component is a simple wrapper around the jQuery DataTables plugin.</p>
+            <p>
+                This component is a wrapper around the jQuery DataTables plugin that handles some basic setup tasks autonomously
+
+            </p>
         </div>
-        <data-tables data="{{$users}}"></data-tables>
+        <data-tables tbl-one="{{$users}}"></data-tables>
     </div>
 @endsection

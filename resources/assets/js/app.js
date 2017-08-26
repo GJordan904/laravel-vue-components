@@ -10,7 +10,7 @@ Vue.use(VueAxios, axios);
 axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
 axios.defaults.headers.common['X-Requested-With'] = 'XmlHttpRequest';
 
-// Components
+// Page Components
 Vue.component('data-tables', () => import('./pages/datatables.vue'));
 
 new Vue({

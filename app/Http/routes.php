@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('started', function () {
+	return view('started');
+});
 Route::group(['prefix' => 'components'], function () {
-	Route::get('datatables', ['uses' => 'ComponentsController@datatables_index', 'as' => 'datatable_index']);
+	Route::get('datatable', ['uses' => 'ComponentsController@datatables_index', 'as' => 'datatable_index']);
 });

@@ -24,7 +24,7 @@ class ComponentsController extends Controller
      *
      */
     public function datatables_index() {
-		$users = User::all()->take(100);
+		$users = User::select(['name',  'email', 'city', 'state'])->take(100)->get();
 		return view('components.datables', compact('users'));
     }
 }

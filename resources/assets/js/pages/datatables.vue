@@ -1,12 +1,12 @@
 <template>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-xs-12">
             <h2>Example</h2>
             <hr>
             <p>In this example we pass data from Laravel to DataTables. The Laravel data has been passed into this page component through the blade template as a prop.</p>
             <data-table
-                    :data="ex1Data"
-                    classes="table">
+                    :data="jsonArray(tblOne)"
+                    :classes="tableClasses">
             </data-table>
         </div>
     </div>
@@ -27,9 +27,8 @@
         },
 
         props: {
-            ex1Data: {
-                type: [Array],
-                default: () => []
+            tblOne: {
+                type: [String]
             }
         },
 
@@ -38,7 +37,9 @@
         },
 
         methods: {
-
+            jsonArray(json) {
+                return JSON.parse(json);
+            }
         },
 
         mounted() {
