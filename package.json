@@ -39,6 +39,7 @@
     "datatables.net": "^1.10.15",
     "datatables.net-bs": "^1.10.15",
     "jquery": "^3.2.1",
+    "prismjs": "^1.6.0",
     "vue": "^2.4.2",
     "vue-axios": "^2.0.2"
   }
