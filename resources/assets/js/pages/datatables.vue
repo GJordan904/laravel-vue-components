@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-xs-12">
                 <h2>Data From View</h2>
                 <hr>
                 <p>In this example we pass data from Laravel to DataTables in the view. The Laravel data has been passed into this page component through the blade template as a prop.</p>
@@ -11,10 +11,19 @@
                 </data-table>
             </div>
 
-            <div class="col-md-4">
-                <div class="well">
-                    <code v-highlighter:javascript="ex1Markup"></code>
-                </div>
+            <div class="col-md-8">
+                <tabs>
+                    <tab title="Blade Template" name="blade" active="true">
+                        <pre highlighter>
+                            <code class="language-markup">
+&lt;data-tables tbl-one="$users">&lt;/data-tables>
+                            </code>
+                        </pre>
+                    </tab>
+                    <tab title="Page Component" name="component">
+                        <p>Test 2</p>
+                    </tab>
+                </tabs>
             </div>
         </div>
         <div class="row">
@@ -29,25 +38,20 @@
 
 <script>
     import DataTableComponent from '../components/datatable.vue';
+    import Tabs from '../components/tabs.vue';
+    import Tab from '../components/tab.vue';
 
     export default {
         data() {
             return {
-                tableClasses: ['table', 'table-striped', 'table-bordered'],
-                ex1Markup: "<div class=\"col-md-8\">\n" +
-                "                <h2>Data From View</h2>\n" +
-                "                <hr>\n" +
-                "                <p>In this example we pass data from Laravel to DataTables in the view. The Laravel data has been passed into this page component through the blade template as a prop.</p>\n" +
-                "                <data-table\n" +
-                "                        :data=\"jsonArray(tblOne)\"\n" +
-                "                        :classes=\"tableClasses\">\n" +
-                "                </data-table>\n" +
-                "            </div>"
+                tableClasses: ['table', 'table-striped', 'table-bordered']
             }
         },
 
         components: {
-            dataTable: DataTableComponent
+            dataTable: DataTableComponent,
+            tabs: Tabs,
+            tab: Tab
         },
 
         props: {
