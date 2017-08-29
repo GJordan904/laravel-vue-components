@@ -1,27 +1,48 @@
-## Laravel PHP Framework
+# Laravel Vue Multi-Page
+This is an example Laravel/Vue setup that is utilizing a multi-page approach with blade templates. I
+use webpack to compile assets and utilize its many optimizations and features such as lazy-loading the
+Vue components. Setting up the front end code this way allows us to optimize the sites front end code and
+keep it organized and maintainable.
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Purpose
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+The goal here is to provide some boilerplate code and configurations that can be used to setup a new
+app or drop into an existing Laravel multi-page application. I put this together for use in pre Laravel 5.3 apps but
+it can easily be used in place of Laravel Mix in 5.3+ apps.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+The key is that this is for a multi-page architecture utilizing blade templates and Laravel's routing while still
+implementing modern javascript technologies and features. This was built to have the key pieces dropped into an existing Laravel
+app that is not currently using a JS framework.
 
-## Official Documentation
+## App Structure
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+The app is a standard Laravel setup utilizing blade templates. The front end consists of the vendor file
+that holds all of our vendor code, the main app file that serves as our entry point and creates our root Vue instance,
+and then pages and components.
 
-## Contributing
+### Pages
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Pages serve as the root component for a view and are setup to be lazy-loaded when that view is navigated to.
+There are basically two ways you can structure and setup a page and a view. Either a split setup where
+you have some of the content in the blade template and some in the page component or, as I prefer, keep all markup
+inside the page component and the blade template consists of just the page component tag.
 
-## Security Vulnerabilities
+### Components
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Components are reusable child components that are imported into the page components. These components are
+usually built for specific purposes like making a data table or creating a drop down menu.
 
-### License
+## Usage
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+In the case of an existing laravel app with no js framework and not currently utilizing the package.json, the following
+is what you need:
+
++ .bablerc
++ package.json
++ webpack.config.js
++ webpack.helper.js
++ postcss.config.js
++ resources/assets/**
+
+Add those files to your app in the same place they exist in this repo, do not place them anywhere else or they will not work.
+Refer to the layouts.app blade template for an example of how to use the assets built by webpack.

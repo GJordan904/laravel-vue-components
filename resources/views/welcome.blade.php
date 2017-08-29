@@ -8,7 +8,8 @@
             <p>
                 This is an example Laravel/Vue setup that is utilizing a multi-page approach with blade templates. I
                 use webpack to compile assets and utilize its many optimizations and features such as lazy-loading the
-                Vue components.
+                Vue components. Setting up the front end code this way allows us to optimize the sites front end code and
+                keep it organized and maintainable.
             </p>
 
             <h2>Purpose</h2>
@@ -36,7 +37,8 @@
             <p>
                 Pages serve as the root component for a view and are setup to be lazy-loaded when that view is navigated to.
                 There are basically two ways you can structure and setup a page and a view. Either a split setup where
-                you cave some of the content as blade
+                you have some of the content in the blade template and some in the page component or, as I prefer, keep all markup
+                inside the page component and the blade template consists of just the page component tag.
             </p>
             <h3>Components</h3>
             <hr>

@@ -14,10 +14,8 @@
             <div class="col-md-8">
                 <tabs>
                     <tab title="Blade Template" name="blade" active="true">
-                        <pre highlighter>
-                            <code class="language-markup">
-&lt;data-tables tbl-one="$users">&lt;/data-tables>
-                            </code>
+                        <pre>
+<code id="ex1html" class="language-html"></code>
                         </pre>
                     </tab>
                     <tab title="Page Component" name="component">
@@ -40,6 +38,7 @@
     import DataTableComponent from '../components/datatable.vue';
     import Tabs from '../components/tabs.vue';
     import Tab from '../components/tab.vue';
+    import Prism from 'prismjs';
 
     export default {
         data() {
@@ -71,7 +70,8 @@
         },
 
         mounted() {
-
+            const ex1 = document.getElementById('ex1html');
+            ex1.innerHTML = Prism.highlight(require('../examples/datatables.array.html'), Prism.languages.html);
         }
     }
 </script>

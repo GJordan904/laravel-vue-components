@@ -123,7 +123,6 @@
         },
         mounted() {
             const dtOptions = this.configDatatables();
-            console.log(dtOptions);
             $('#'+this.id).DataTable(dtOptions);
         }
     }
