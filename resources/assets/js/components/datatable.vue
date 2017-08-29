@@ -74,6 +74,10 @@
             ordering: {
                 type: [Boolean],
                 default: true
+            },
+            adlOptions: {
+                type: [Object],
+                default: () => {return {}}
             }
         },
         computed: {
@@ -118,7 +122,11 @@
                 }else {
                     console.error('You need to pass data to the table through either the data prop or the ajax prop.');
                 }
-                return opt;
+
+                return {
+                    ...opt,
+                    ...this.adlOptions
+                };
             }
         },
         mounted() {

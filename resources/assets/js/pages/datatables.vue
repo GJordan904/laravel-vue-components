@@ -7,7 +7,8 @@
                 <p>In this example we pass data from Laravel to DataTables in the view. The Laravel data has been passed into this page component through the blade template as a prop.</p>
                 <data-table
                         :data="jsonArray(tblOne)"
-                        :classes="tableClasses">
+                        :classes="tableClasses"
+                        :adl-options="{autoWidth: false}">
                 </data-table>
             </div>
 
@@ -77,5 +78,7 @@
 </script>
 
 <style lang="scss">
-
+pre, code {
+    background-color: #2e3436;
+}
 </style>
