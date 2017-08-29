@@ -46,3 +46,5 @@ is what you need:
 
 Add those files to your app in the same place they exist in this repo, do not place them anywhere else or they will not work.
 Refer to the layouts.app blade template for an example of how to use the assets built by webpack.
+
+Once you have copied over the files, run the command `npm run watch` from the project root and start building.
