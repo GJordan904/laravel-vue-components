@@ -27,4 +27,12 @@ class ComponentsController extends Controller
 		$users = User::select(['name',  'email', 'city', 'state'])->take(100)->get();
 		return view('components.datables', compact('users'));
     }
+
+	/**
+	 * The Tabs Page
+	 *
+	 */
+	public function tabs_index() {
+		return view('components.tabs');
+	}
 }

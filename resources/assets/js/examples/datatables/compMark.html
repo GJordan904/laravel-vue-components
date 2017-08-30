@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Data From View</h2>
+            <hr>
+            <p>In this example we pass data from Laravel to DataTables in the view. The Laravel data has been passed into this page component through the blade template as a prop.</p>
+            <data-table
+                    :data="jsonArray(tblOne)"
+                    :classes="tableClasses"
+                    :adl-options="{autoWidth: false}">
+            </data-table>
+        </div>
+
+        <div class="col-md-8">
+            <tabs>
+                <tab title="Blade Template" name="blade" active="true">
+                        <pre>
+<code id="ex1html" class="language-html"></code>
+                        </pre>
+                </tab>
+                <tab title="Page Component Markup" name="compmark">
+                        <pre>
+<code id="ex1compmarkup" class="language-html"></code>
+                        </pre>
+                </tab>
+                <tab title="Page Component Script" name="compscri">
+                        <pre>
+<code id="ex1compscript" class="language-javascript"></code>
+                        </pre>
+                </tab>
+            </tabs>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Data From Ajax</h2>
+            <hr>
+            <p>Here we are getting ajax sourced data and changing a few of the default settings</p>
+        </div>
+    </div>
+</div>

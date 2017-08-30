@@ -11,13 +11,20 @@
                 the ajax request and the component handles the rest. Additional options may be passed to the component
                 as props that are then passed on to the DataTables instance.
             </p>
+        </div>
+    </div>
+
+    <data-tables :tbl-one="{{$users}}" tbl-two="{{route('some_users')}}"></data-tables>
+
+    <div class="container">
+        <div class="row">
             <h2>Page Component</h2>
             <p>
                 This page is setup in a split style where some of the markup is contained in the blade template and
-                some is contained inside the component. I find it easier to maintain everything in one area and I have
+                some is contained inside the component. Personally, I find it easier to maintain everything in one area and I have
                 simply done this for demonstration purposes.
             </p>
         </div>
     </div>
-    <data-tables tbl-one="{{$users}}"></data-tables>
+    <code-prev folder="datatables"></code-prev>
 @endsection

@@ -19,4 +19,9 @@ Route::get('started', function () {
 });
 Route::group(['prefix' => 'components'], function () {
 	Route::get('datatable', ['uses' => 'ComponentsController@datatables_index', 'as' => 'datatable_index']);
+	Route::get('tabs', ['uses' => 'ComponentsController@tabs_index', 'as' => 'tabs_index']);
+});
+Route::group(['prefix' => 'users'], function() {
+	Route::get('all', ['uses' => 'UserController@users_all', 'as' => 'all_users']);
+	Route::get('some', ['uses' => 'UserController@users_some', 'as' => 'some_users']);
 });

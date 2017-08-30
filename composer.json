@@ -6,7 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*"
+        "laravel/framework": "5.1.*",
+        "zachleigh/laravel-vue-generators": "0.1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -21,7 +22,8 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": ["app/helpers.php"]
     },
     "autoload-dev": {
         "classmap": [

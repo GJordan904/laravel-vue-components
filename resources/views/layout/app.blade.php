@@ -31,7 +31,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{route('datatable_index')}}">Datatables</a></li>
-                            <li role="separator" class="divider"></li>
+                            <li><a href="{{route('tabs_index')}}">Tabs</a></li>
                         </ul>
                     </li>
                 </ul>

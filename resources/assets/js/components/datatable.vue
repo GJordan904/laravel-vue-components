@@ -3,14 +3,14 @@
         <thead>
         <tr>
             <th v-if="data.length > 0" v-for="key in dataKeys">{{key}}</th>
-            <th v-if="ajax.length > 0" v-for="col in colKeys">{{col}}</th>
+            <th v-if="ajax !== ''" v-for="col in colKeys">{{col}}</th>
         </tr>
         </thead>
 
         <tfoot v-if="footer">
         <tr>
             <th v-if="data.length > 0" v-for="key in dataKeys">{{key}}</th>
-            <th v-if="ajax.length > 0" v-for="col in colKeys">{{col}}</th>
+            <th v-if="ajax !== ''" v-for="col in colKeys">{{col}}</th>
         </tr>
         </tfoot>
     </table>
@@ -29,7 +29,7 @@
         props: {
             ajax: {
                 type: [String, Object, Function],
-                default: null
+                default: () => {return ''}
             },
             classes: {
                 type:[Array],
@@ -37,7 +37,7 @@
             },
             data: {
                 type:[Array],
-                default: null
+                default: () => {return []}
             },
             deferRender: {
                 type: [Boolean],
@@ -90,11 +90,13 @@
                 }
             },
             colKeys() {
-                if(this.columns !== null) {
+                console.log('building columns');
+                if(this.columns.length > 0) {
                     let names = [];
-                    for(let col in this.columns) {
+                    for(let col of this.columns) {
                         if(col.name !== undefined) names.push(col.name);
                     }
+                    console.log(names);
                     return names;
                 }
             }
@@ -109,14 +111,14 @@
                     stateSave: this.stateSave,
                     columns: this.columns
                 };
-                if(this.ajax !== null) {
+                if(this.ajax.length > 0) {
                     opt.ajax = this.ajax;
-                }else if(this.data !== null){
+                }else if(this.data.length > 0){
                     opt.data = this.data;
                     if(opt.columns.length === 0) {
                         const keys = this.dataKeys;
-                        for (let i=0; i<keys.length; i++) {
-                            opt.columns.push({name: ucFirst(keys[i]), data: keys[i]})
+                        for (let key of keys) {
+                            opt.columns.push({name: ucFirst(key), data: key})
                         }
                     }
                 }else {
