@@ -15,7 +15,7 @@ module.exports = {
 
     output: {
         path: helpers.publicPath(''),
-        publicPath: '/vue-components/public/',
+        publicPath: isDev ? '/vue-components/public/' : '/',
         filename: '[name].js',
         chunkFilename: '[id].chunk.js'
     },

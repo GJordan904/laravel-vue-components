@@ -2,7 +2,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress --colors",
     "dever": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress --colors --watch --display-error-details --verbose",
-    "watch": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress --colors --watch"
+    "watch": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress --colors --watch",
+    "prod": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress --colors"
   },
   "private": true,
   "devDependencies": {
