@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const helpers = require('./webpack.helper');
 const isDev = process.env.NODE_ENV === 'development';
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const ExtractSass = new ExtractTextPlugin({filename: '[name]-sass.css', allChunks: true});
+const ExtractSass = new ExtractTextPlugin({filename: '[name].css', allChunks: true});
 const ExtractCss = new ExtractTextPlugin({filename: '[name].css', allChunks: true});
 
 module.exports = {
@@ -15,54 +15,59 @@ module.exports = {
 
     output: {
         path: helpers.publicPath(''),
-        publicPath: '/',
+        publicPath: '/vue-components/public/',
         filename: '[name].js',
         chunkFilename: '[id].chunk.js'
     },
 
     resolve: {
-        extensions: ['.js']
+        extensions: ['.js'],
+        alias: {
+            'vue': 'vue/dist/vue.esm.js'
+        }
     },
 
     module: {
         rules: [
             {
-                test: /\.html$/,
-                loader: 'html-loader',
-                options: {
-                    minification: false
-                }
+                test: /\.js$/,
+                use: 'babel-loader',
+                exclude: /node_modules/
             },
             {
-                test: /\.ico$/,
-                loader: 'file-loader',
-                options: {
-                    hash: 'sha512',
-                    digest: 'hex',
-                    name: '[hash].[ext]'
+                test: /\.html$/,
+                use: {
+                    loader: 'html-loader',
+                    options: {
+                        minification: false
+                    }
                 }
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/,
-                loader: 'file-loader',
-                options: {
-                    hash: 'sha512',
-                    digest: 'hex',
-                    name: 'images/[hash].[ext]'
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        hash: 'sha512',
+                        digest: 'hex',
+                        name: 'images/[hash].[ext]'
+                    }
                 }
             },
             {
                 test: /\.(eot|woff2?|ttf|otf)$/,
-                loader: 'file-loader',
-                options: {
-                    hash: 'sha512',
-                    digest: 'hex',
-                    name: 'fonts/[hash].[ext]'
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        hash: 'sha512',
+                        digest: 'hex',
+                        name: 'fonts/[hash].[ext]'
+                    }
                 }
             },
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                use: 'vue-loader'
             },
             {
                 test: /\.scss$/,
@@ -116,13 +121,15 @@ module.exports = {
             name: ['app', 'vendor']
         }),
 
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: isDev ? JSON.stringify("development") : JSON.stringify("production")
+            }
+        }),
+
         new webpack.ProvidePlugin({
             $: "jquery",
-            jQuery: "jquery",
-            jquery: 'jquery',
-            'process.env': {
-                NODE_ENV: process.env.NODE_ENV
-            }
+            jQuery: "jquery"
         })
     ]
 };

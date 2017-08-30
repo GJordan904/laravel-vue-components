@@ -1,9 +1,24 @@
 <template>
-    <table id="{{id}}" class="{{classAsString()}}"></table>
+    <table :id="id" :class="classAsString">
+        <thead>
+        <tr>
+            <th v-if="data.length > 0" v-for="key in dataKeys">{{key}}</th>
+            <th v-if="ajax !== ''" v-for="col in colKeys">{{col}}</th>
+        </tr>
+        </thead>
+
+        <tfoot v-if="footer">
+        <tr>
+            <th v-if="data.length > 0" v-for="key in dataKeys">{{key}}</th>
+            <th v-if="ajax !== ''" v-for="col in colKeys">{{col}}</th>
+        </tr>
+        </tfoot>
+    </table>
 </template>
 
 <script>
-    import DataTable from 'datatables';
+    import DataTable from 'datatables.net';
+    import {ucFirst} from "../helpers";
 
     export default {
         data() {
@@ -14,15 +29,15 @@
         props: {
             ajax: {
                 type: [String, Object, Function],
-                default: null
+                default: () => {return ''}
             },
             classes: {
-                type:[String, Array],
-                default: null
+                type:[Array],
+                default: () => {return ['table']}
             },
             data: {
                 type:[Array],
-                default: null
+                default: () => {return []}
             },
             deferRender: {
                 type: [Boolean],
@@ -30,7 +45,7 @@
             },
             scroll: {
                 type: [Object],
-                default: {x: true, y: true}
+                default: () => {return {x: true, y: true};}
             },
             serverSide: {
                 type:[Boolean],
@@ -39,12 +54,51 @@
             stateSave: {
                 type: [Boolean],
                 default: true
+            },
+            columns: {
+                type: [Array],
+                default: () => {return [];}
+            },
+            footer: {
+                type: [Boolean],
+                default: false
+            },
+            paging: {
+                type: [Boolean],
+                default: true
+            },
+            searching: {
+                type: [Boolean],
+                default: true
+            },
+            ordering: {
+                type: [Boolean],
+                default: true
+            },
+            adlOptions: {
+                type: [Object],
+                default: () => {return {}}
             }
         },
         computed: {
             classAsString() {
-                if (typeof this.classes === 'string') return this.classes;
-                return this.classes.join(' ');
+                return this.classes === undefined ? '' : this.classes.join(' ');
+            },
+            dataKeys() {
+                if(this.data.length !== 0) {
+                    return Object.keys(this.data[0]);
+                }
+            },
+            colKeys() {
+                console.log('building columns');
+                if(this.columns.length > 0) {
+                    let names = [];
+                    for(let col of this.columns) {
+                        if(col.name !== undefined) names.push(col.name);
+                    }
+                    console.log(names);
+                    return names;
+                }
             }
         },
         methods: {
@@ -54,17 +108,27 @@
                     scrollX: this.scroll.x,
                     scrollY: this.scroll.y,
                     serverSide: this.serverSide,
-                    stateSave: this.stateSave
+                    stateSave: this.stateSave,
+                    columns: this.columns
                 };
-                if(this.ajax) {
+                if(this.ajax.length > 0) {
                     opt.ajax = this.ajax;
-                }else if(this.data){
+                }else if(this.data.length > 0){
                     opt.data = this.data;
+                    if(opt.columns.length === 0) {
+                        const keys = this.dataKeys;
+                        for (let key of keys) {
+                            opt.columns.push({name: ucFirst(key), data: key})
+                        }
+                    }
                 }else {
                     console.error('You need to pass data to the table through either the data prop or the ajax prop.');
                 }
-                return opt;
 
+                return {
+                    ...opt,
+                    ...this.adlOptions
+                };
             }
         },
         mounted() {
