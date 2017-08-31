@@ -2,42 +2,55 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h2>Data From View</h2>
-                <hr>
-                <p>
-                    This is the component in its simplest form. Here we simply pass an array from Laravel through the
-                    blade template as a prop on the page component.
-                </p>
-                <p>
-                    Data can be passed directly to datatables as a json array on the data prop. With this configuration
-                    that is all you actually have to provide. However, in this example I am also passing some classes to
-                    be applied to the table as well as setting auto-width to false.
-                </p>
-                <data-table
-                        :data="tblOne"
-                        :classes="tableClasses"
-                        :adl-options="{autoWidth: false}">
-                </data-table>
-            </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h2>Data From View</h2>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            This is the component in its simplest form. Here we simply pass an array from Laravel through the
+                            blade template as a prop on the page component.
+                        </p>
+                        <p>
+                            Data can be passed directly to datatables as a json array on the data prop. With this configuration
+                            that is all you actually have to provide. However, in this example I am also passing some classes to
+                            be applied to the table as well as setting auto-width to false.
+                        </p>
+                        <hr>
+                        <data-table
+                                :data="tblOne"
+                                :classes="tableClasses"
+                                :adl-options="{autoWidth: false}">
+                        </data-table>
 
-            <div class="col-md-8">
-                <tabs>
-                    <tab title="Blade Template" name="blade" active="true">
-                        <pre>
-<code id="ex1html" class="language-html"></code>
-                        </pre>
-                    </tab>
-                    <tab title="Page Component Markup" name="compmark">
-                        <pre>
-<code id="ex1compmarkup" class="language-html"></code>
-                        </pre>
-                    </tab>
-                    <tab title="Page Component Script" name="compscri">
-                        <pre>
-<code id="ex1compscript" class="language-javascript"></code>
-                        </pre>
-                    </tab>
-                </tabs>
+                        <div class="col-md-8">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4>Code</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <tabs>
+                                        <tab title="Blade Template" name="blade" active="true">
+                                <pre>
+    <code id="ex1html" class="language-html"></code>
+                                </pre>
+                                        </tab>
+                                        <tab title="Page Component Markup" name="compmark">
+                                <pre>
+    <code id="ex1compmarkup" class="language-html"></code>
+                                </pre>
+                                        </tab>
+                                        <tab title="Page Component Script" name="compscri">
+                                <pre>
+    <code id="ex1compscript" class="language-javascript"></code>
+                                </pre>
+                                        </tab>
+                                    </tabs>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -137,9 +150,3 @@
         }
     }
 </script>
-
-<style lang="scss">
-pre, code {
-    background-color: #2e3436;
-}
-</style>
